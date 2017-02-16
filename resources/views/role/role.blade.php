@@ -39,12 +39,12 @@
                 </div>
             </div>
             {{--右边：搜索框--}}
-            <div class="col-md-6">
-                <div style="float: right">
-                    <input title="search" type="text" name="search_role">
-                    <input type="button" value="搜索" class="btn btn-default btn-sm">
-                </div>
-            </div>
+            {{--<div class="col-md-6">--}}
+                {{--<div style="float: right">--}}
+                    {{--<input title="search" type="text" name="search_role">--}}
+                    {{--<input type="button" value="搜索" class="btn btn-default btn-sm">--}}
+                {{--</div>--}}
+            {{--</div>--}}
         </div>
     </div>
     {{--第二行：角色列表--}}

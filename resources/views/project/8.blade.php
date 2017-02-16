@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+    <script>
+        function save(video) {
+            var xhr=new XMLHttpRequest();
+            xhr.open('get','/log/create?v='+video,true);
+            xhr.send();
+        }
+    </script>
     <div class="container">
         <!--培训内容-->
         <!--财务-->

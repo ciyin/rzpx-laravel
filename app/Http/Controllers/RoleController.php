@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Project;
+use App\Role;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -41,14 +43,12 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $role=$request->input('role');
-        $role_id=DB::table('roles')->insertGetId(
-            ['role'=>$role]
-        );
-        $projects=$request->input('projects');
-        DB::table('projects')->insert(
-            ['role_id'=>$role_id,'projects'=>$projects]
-        );
+        $role=new Role();
+        $role->role=$request->role;
+        $role->save();
+        $project=new Project();
+        $project->projects=$request->projects;
+        $role->project()->save($project);
         return redirect('/role');
     }
 

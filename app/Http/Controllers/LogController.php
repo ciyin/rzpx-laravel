@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
@@ -34,7 +35,11 @@ class LogController extends Controller
      */
     public function create()
     {
-        //
+        $log=new Log();
+        $log->user_id=Auth::id();
+        $log->video=$_GET['v'];
+        $log->watching_at=time();
+        $log->save();
     }
 
     /**
@@ -45,7 +50,7 @@ class LogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -86,6 +91,7 @@ class LogController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

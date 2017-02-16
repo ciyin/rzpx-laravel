@@ -25,6 +25,7 @@ class UserController extends Controller
         $users=DB::table('users')
             ->join('roles','roles.id','=','users.role_id')
             ->select('users.*','roles.role')
+            ->orderBy('created_at','desc')
             ->get();
         return view('page/userlist',['role_id'=>$role_id,'roles'=>$roles,'users'=>$users]);
     }
@@ -47,17 +48,15 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $name=$request->input('username');
-        $email=$request->input('email');
-        $password=$request->input('password');
-        $pwd=bcrypt($password);
-        $role_id=$request->input('role');
-        $status=1;
-        $city=$request->input('city');
-        $created_by=Auth::id();
-        DB::table('users')->insert(
-            ['name'=>$name,'email'=>$email,'password'=>$pwd,'role_id'=>$role_id,'status'=>$status,'city'=>$city,'created_by'=>$created_by]
-        );
+        $user=new User();
+        $user->name=$request->username;
+        $user->email=$request->email;
+        $user->password=bcrypt($request->password);
+        $user->role_id=$request->role;
+        $user->status=1;
+        $user->city=$request->city;
+        $user->created_by=Auth::id();
+        $user->save();
         return redirect('/user');
     }
 
