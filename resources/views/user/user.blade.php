@@ -59,14 +59,14 @@
                 </div>
             </div>
             {{--右边：搜索框--}}
-            {{--<div class="col-md-6">--}}
-                {{--<div style="float: right">--}}
-                    {{--<form method="get" action="{{url('/user')}}">--}}
-                        {{--<input title="search" type="text" name="search_user">--}}
-                        {{--<input type="submit" value="搜索" class="btn btn-default btn-sm">--}}
-                    {{--</form>--}}
-                {{--</div>--}}
-            {{--</div>--}}
+            <div class="col-md-6">
+                <div style="float: right">
+                    <form method="get" action="{{url('user/create')}}">
+                        <input title="search" type="text" name="search_user">
+                        <input type="submit" value="搜索" class="btn btn-default btn-sm">
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
     {{--第二行：用户列表--}}
@@ -93,5 +93,11 @@
                 </tr>
             @endforeach
         </table>
+    </div>
+    {{--第三行：显示分页标签--}}
+    <div class="col-md-12">
+        <div style="float: right">
+            {{$users->links()}}
+        </div>
     </div>
 </div>

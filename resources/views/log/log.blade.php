@@ -2,8 +2,10 @@
     {{--第一行：搜索框--}}
     {{--<div class="col-md-12">--}}
         {{--<div style="float: right">--}}
-            {{--<input title="search" type="text" name="search_role">--}}
-            {{--<input type="button" value="搜索" class="btn btn-default btn-sm">--}}
+            {{--<form method="get" action="/log">--}}
+                {{--<input title="search" type="text" name="search_log" placeholder="输入姓名搜索">--}}
+                {{--<input type="submit" value="搜索" class="btn btn-default btn-sm">--}}
+            {{--</form>--}}
         {{--</div>--}}
     {{--</div>--}}
     {{--第二行：培训记录--}}
@@ -28,5 +30,11 @@
                 </tr>
             @endforeach
         </table>
+    </div>
+    {{--第三行：显示分页标签--}}
+    <div class="col-md-12">
+        <div style="float: right">
+            {{$logs->links()}}
+        </div>
     </div>
 </div>
