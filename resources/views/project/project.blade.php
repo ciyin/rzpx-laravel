@@ -14,7 +14,7 @@
         @foreach($projects as $project)
             <tr>
                 <td>{{$project->id}}</td>
-                <td>{{$project->role}}</td>
+                <td>{{$project->role->role}}</td>
                 <td>{{$project->projects}}</td>
                 <td><a href="{{url('project/'.$project->role_id)}}">查看</a></td>
             </tr>

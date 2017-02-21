@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -17,16 +18,9 @@ class UserController extends Controller
     public function index()
     {
         $user_id=Auth::id();
-        $user=User::find($user_id);
-        $role_id=$user->role_id;
-        $roles=DB::table('roles')
-            ->select('roles.*')
-            ->get();
-        $users=DB::table('users')
-            ->join('roles','roles.id','=','users.role_id')
-            ->select('users.*','roles.role')
-            ->orderBy('created_at','desc')
-            ->simplePaginate(10);
+        $role_id=User::find($user_id)->role_id;
+        $roles=Role::all();
+        $users=User::with('role')->orderBy('created_at','desc')->simplePaginate(10);
         return view('page/userlist',['role_id'=>$role_id,'roles'=>$roles,'users'=>$users]);
     }
 
@@ -38,15 +32,10 @@ class UserController extends Controller
     public function create()
     {
         $user_id=Auth::id();
-        $user=User::find($user_id);
-        $role_id=$user->role_id;
-        $roles=DB::table('roles')
-            ->select('roles.*')
-            ->get();
-        $users=DB::table('users')
-            ->join('roles','roles.id','=','users.role_id')
-            ->select('users.*','roles.role')
-            ->where('users.name','like',$_GET['search_user'])
+        $role_id=User::find($user_id)->role_id;
+        $roles=Role::all();
+        $users=User::with('role')
+            ->where('users.name','like','%'.$_GET['search_user'].'%')
             ->orderBy('created_at','desc')
             ->simplePaginate(10);
         return view('page/userlist',['role_id'=>$role_id,'roles'=>$roles,'users'=>$users]);

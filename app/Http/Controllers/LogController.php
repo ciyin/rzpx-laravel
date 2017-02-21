@@ -19,14 +19,8 @@ class LogController extends Controller
     {
 
         $user_id=Auth::id();
-        $user=User::find($user_id);
-        $role_id=$user->role_id;
-        $logs=DB::table('logs')
-            ->join('users','users.id','=','logs.user_id')
-            ->join('roles','roles.id','=','users.role_id')
-            ->select('logs.*','users.name','users.city','roles.role')
-            ->orderBy('created_at','desc')
-            ->simplePaginate(10);
+        $role_id=User::find($user_id)->role_id;
+        $logs=Log::with('user','user.role')->orderBy('created_at','desc')->simplePaginate(10);
         return view('page/loglist',['role_id'=>$role_id,'logs'=>$logs]);
     }
 

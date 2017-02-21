@@ -78,17 +78,17 @@
                 <td>角色</td>
                 <td>城市</td>
                 <td>邮箱</td>
-                <td>创建人</td>
+                {{--<td>创建人</td>--}}
                 <td>创建时间</td>
             </tr>
             @foreach($users as $list)
                 <tr>
                     <td>{{$list->id}}</td>
                     <td>{{$list->name}}</td>
-                    <td>{{$list->role}}</td>
+                    <td>{{$list->role->role}}</td>
                     <td>{{$list->city}}</td>
                     <td>{{$list->email}}</td>
-                    <td>{{$list->created_by}}</td>
+                    {{--<td>{{$list->created_by}}</td>--}}
                     <td>{{$list->created_at}}</td>
                 </tr>
             @endforeach

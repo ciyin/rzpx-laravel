@@ -6,8 +6,8 @@
             <div class="col-md-12">
                 <div class="row">
                     {{--userlist:only admin and hr can operate--}}
-                    {{--需要赋值的变量:$role_id,$roles,$users--}}
-                    @if($role_id=1)
+                    {{--需要赋值的变量:$role_id,$roles(表单岗位单选框),$users--}}
+                    @if($role_id==1)
                         <div class="col-md-2">@include('nav/admin')</div>
                     @else
                         <div class="col-md-2">@include('nav/hr')</div>

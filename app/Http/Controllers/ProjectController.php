@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
@@ -17,19 +18,13 @@ class ProjectController extends Controller
     public function index()
     {
         $user_id=Auth::id();
-        $user=User::find($user_id);
-        $role_id=$user->role_id;
-        $name=$user->name;
+        $role_id=User::find($user_id)->role_id;
+        $name=User::find($user_id)->name;
         if ($role_id==1 || $role_id==2){
-            $projects=DB::table('projects')
-                ->join('roles','roles.id','=','projects.role_id')
-                ->select('projects.*','roles.role')
-                ->get();
+            $projects=Project::with('role')->get();
             return view('page/projectlist',['name'=>$name,'role_id'=>$role_id,'projects'=>$projects]);
         }else{
-            $projects=DB::table('projects')
-                ->join('roles','roles.id','=','projects.role_id')
-                ->select('projects.*','roles.role')
+            $projects=Project::with('role')
                 ->where('projects.role_id','=',$role_id)
                 ->get();
             return view('page/projectlist',['name'=>$name,'role_id'=>$role_id,'projects'=>$projects]);

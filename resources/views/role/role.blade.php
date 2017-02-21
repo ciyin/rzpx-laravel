@@ -60,7 +60,8 @@
                 <tr>
                     <td>{{$role->id}}</td>
                     <td>{{$role->role}}</td>
-                    <td>{{$role->projects}}</td>
+                    {{--当不知道该调用project->project还是project['project]时，可用dd()打印结果，看看是对象还是数组--}}
+                    <td>{{$role->project['projects']}}</td>
                     <td>{{$role->created_at}}</td>
                 </tr>
             @endforeach

@@ -18,10 +18,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $role_list=DB::table('roles')
-            ->join('projects','roles.id','=','projects.role_id')
-            ->select('roles.*','projects.projects')
-            ->get();
+        $role_list=Role::with('project')->get();
         return view('page/rolelist',['roles'=>$role_list]);
     }
 
