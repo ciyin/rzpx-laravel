@@ -51,7 +51,7 @@
     <div class="col-md-12" style="margin-top: 10px">
         <table class="table table-responsive">
             <tr>
-                <td>ID</td>
+                <td>序号</td>
                 <td>角色</td>
                 <td>培训项目</td>
                 <td>创建时间</td>
